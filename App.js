@@ -1,11 +1,42 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput
+} from 'react-native';
 
 export default class App extends React.Component {
+  
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <Text style={styles.header}>Future home ROI</Text>
+        <View style={styles.curencyContainer}>
+          <Text style={styles.formInput}>$</Text>
+          <TextInput 
+            style={styles.formInput}
+            placeholder="Purchase price" />
+        </View>
+        <View style={styles.curencyContainer}>
+          <Text style={styles.formInput}>$</Text>
+          <TextInput 
+            style={styles.formInput}
+            placeholder="Down payment" />
+        </View>
+        <View style={styles.curencyContainer}>
+          <TextInput 
+            style={styles.formInput}
+            placeholder="Interest rate" />
+          <Text style={styles.formInput}>%</Text>
+        </View>
+        <View style={styles.curencyContainer}>
+          <Text style={styles.formInput}>$</Text>
+          <TextInput 
+            style={styles.formInput}
+            placeholder="Closing costs" />
+        </View>
       </View>
     );
   }
@@ -18,4 +49,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  header: {
+    fontSize: 40
+  },
+  curencyContainer:{
+    flexDirection: 'row'
+  },
+  formInput: {
+    fontSize: 32,
+    textAlign: 'right'
+  }
 });
