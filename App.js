@@ -7,7 +7,10 @@ import {
 } from 'react-native';
 
 export default class App extends React.Component {
-  
+
+  state={
+    purchasePrice: ''
+  }
 
   render() {
     return (
@@ -17,7 +20,9 @@ export default class App extends React.Component {
           <Text style={styles.formInput}>$</Text>
           <TextInput 
             style={styles.formInput}
-            placeholder="Purchase price" />
+            placeholder="Purchase price" 
+            value={this.state.purchasePrice}
+            onChangeText={(text) => this.setState({purchasePrice: text})}/>
         </View>
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
