@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput
+  TextInput,
+  TouchableWithoutFeedback
 } from 'react-native';
 
 import stripchar from 'stripchar';
@@ -51,6 +52,19 @@ export default class App extends React.Component {
             style={styles.formInput}
             placeholder="Closing costs" />
         </View>
+        <Text style={styles.formInput}>
+          30-year fixed
+        </Text>
+        <TouchableWithoutFeedback>
+          <View style={styles.button}>
+           <Text style={{
+            color: 'white',
+            fontSize: 32
+           }}>
+             Calculate
+           </Text>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
@@ -72,5 +86,14 @@ const styles = StyleSheet.create({
   formInput: {
     fontSize: 32,
     textAlign: 'right'
+  },
+  button: {
+    backgroundColor: '#3B5998',
+    minWidth: 300,
+    height: 40,
+    borderRadius: 10,
+    margin: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
