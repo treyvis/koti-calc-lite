@@ -13,7 +13,10 @@ import commaNumber from 'comma-number';
 export default class App extends React.Component {
 
   state={
-    purchasePrice: ''
+    purchasePrice: '',
+    downPayment: '',
+    interestRate: '',
+    closingCosts: ''
   }
 
   cleanNum = text => {
@@ -32,25 +35,31 @@ export default class App extends React.Component {
             style={styles.formInput}
             placeholder="Purchase price" 
             value={this.state.purchasePrice}
-            onChangeText={(text) => this.setState({purchasePrice: this.cleanNum(text)})}/>
+            onChangeText={text => this.setState({purchasePrice: this.cleanNum(text)})}/>
         </View>
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
           <TextInput 
             style={styles.formInput}
-            placeholder="Down payment" />
+            placeholder="Down payment"
+            value={this.state.downPayment} 
+            onChangeText={text => this.setState({downPayment: this.cleanNum(text)})}/>
         </View>
         <View style={styles.curencyContainer}>
           <TextInput 
             style={styles.formInput}
-            placeholder="Interest rate" />
+            placeholder="Interest rate" 
+            value={this.state.interestRate}
+            onChangeText={text => this.setState({interestRate: this.cleanNum(text)})}/>
           <Text style={styles.formInput}>%</Text>
         </View>
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
           <TextInput 
             style={styles.formInput}
-            placeholder="Closing costs" />
+            placeholder="Closing costs" 
+            value={this.state.closingCosts}
+            onChangeText={text => this.setState({closingCosts: this.cleanNum(text)})}/>
         </View>
         <Text style={styles.formInput}>
           30-year fixed
