@@ -55,7 +55,8 @@ export default class App extends React.Component {
         <Text style={styles.formInput}>
           30-year fixed
         </Text>
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={() => {console.log('Calc pressed')}}> 
           <View style={styles.button}>
            <Text style={{
             color: 'white',
