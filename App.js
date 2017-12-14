@@ -9,6 +9,8 @@ import {
 
 import stripchar from 'stripchar';
 import commaNumber from 'comma-number';
+import { Finance } from 'financejs'
+const finance = new Finance();
 
 export default class App extends React.Component {
 
@@ -65,7 +67,7 @@ export default class App extends React.Component {
           30-year fixed
         </Text>
         <TouchableWithoutFeedback
-          onPress={() => {console.log('Calc pressed')}}> 
+          onPress={() => {console.log(finance.AM(250000,4,360,1))}}> 
           <View style={styles.button}>
            <Text style={{
             color: 'white',
