@@ -50,6 +50,7 @@ export default class App extends React.Component {
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
           <TextInput 
+            keyboardType={'numeric'}
             style={styles.formInput}
             placeholder="Down payment"
             value={this.state.downPayment} 
@@ -57,6 +58,7 @@ export default class App extends React.Component {
         </View>
         <View style={styles.curencyContainer}>
           <TextInput 
+            keyboardType={'numeric'}
             style={styles.formInput}
             placeholder="Interest rate" 
             value={this.state.interestRate}
@@ -66,6 +68,7 @@ export default class App extends React.Component {
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
           <TextInput 
+            keyboardType={'numeric'}
             style={styles.formInput}
             placeholder="Closing costs" 
             value={this.state.closingCosts}
