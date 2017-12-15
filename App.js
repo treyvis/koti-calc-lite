@@ -18,11 +18,19 @@ export default class App extends React.Component {
     purchasePrice: '',
     downPayment: '',
     interestRate: '',
-    closingCosts: ''
+    closingCosts: '',
+    monthlyPayment: 0
+
   }
 
   cleanNum = text => {
     return commaNumber(stripchar.StripChar.RSExceptNum(text) || '');
+  }
+
+  calculatePayment = () => {
+    console.log('calculatePayment called');
+    console.log(finance.AM(20000, 7.5, 60, 1) + '');
+    this.setState({monthlyPayment: finance.AM(20000, 7.5, 60, 1) + ''});
   }
 
   render() {
@@ -67,7 +75,7 @@ export default class App extends React.Component {
           30-year fixed
         </Text>
         <TouchableWithoutFeedback
-          onPress={() => {console.log(finance.AM(250000,4,360,1))}}> 
+          onPress={this.calculatePayment}> 
           <View style={styles.button}>
            <Text style={{
             color: 'white',
@@ -77,6 +85,20 @@ export default class App extends React.Component {
            </Text>
           </View>
         </TouchableWithoutFeedback>
+        <View style={{
+          alignItems: 'center',
+        }}>
+          <Text style={{
+            fontSize: 32
+          }}>
+            Monthly Payment: 
+          </Text>
+          <Text style={{
+            fontSize: 32
+          }}>
+            {'$' + this.state.monthlyPayment}
+          </Text>
+        </View>
       </View>
     );
   }
@@ -107,5 +129,5 @@ const styles = StyleSheet.create({
     margin: 20,
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
 });
