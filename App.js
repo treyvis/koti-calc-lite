@@ -29,12 +29,22 @@ export default class App extends React.Component {
 
   calculatePayment = () => {
     console.log('calculatePayment called');
-    console.log(finance.AM(20000, 7.5, 60, 1) + '');
-    this.setState({monthlyPayment: finance.AM(20000, 7.5, 60, 1) + ''});
+    console.log(finance.AM(
+      parseFloat(this.state.purchasePrice.replace(',','')), 
+      parseFloat(this.state.interestRate), 
+      360, 
+      1) + '');
+    this.setState({monthlyPayment: finance.AM(
+      parseFloat(this.state.purchasePrice.replace(',','')), 
+      parseFloat(this.state.interestRate), 
+      360, 
+      1
+      ) + ''
+    });
   }
 
   render() {
-    //this.cleanNum('1234f345');
+    console.log(parseFloat(this.state.purchasePrice.replace(',','')));
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Future home ROI</Text>
