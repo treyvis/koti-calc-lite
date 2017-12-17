@@ -27,6 +27,16 @@ export default class App extends React.Component {
     return commaNumber(stripchar.StripChar.RSExceptNum(text) || '');
   }
 
+  cleanFloat = text => {
+    if (/^\d+\.?\d*?$/.test(text)) {
+      this.setState({interestRate: text});
+      console.log(true);
+      return text;
+    } else {
+      return this.state.interestRate;
+    }
+  }
+
   calculatePayment = () => {
     console.log('calculatePayment called');
     console.log(finance.AM(
@@ -44,7 +54,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(parseFloat(this.state.purchasePrice.replace(',','')));
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Future home ROI</Text>
@@ -72,7 +81,7 @@ export default class App extends React.Component {
             style={styles.formInput}
             placeholder="Interest rate" 
             value={this.state.interestRate}
-            onChangeText={text => this.setState({interestRate: this.cleanNum(text)})}/>
+            onChangeText={text => this.setState({interestRate: this.cleanFloat(text)})}/>
           <Text style={styles.formInput}>%</Text>
         </View>
         <View style={styles.curencyContainer}>
