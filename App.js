@@ -40,12 +40,16 @@ export default class App extends React.Component {
   calculatePayment = () => {
     console.log('calculatePayment called');
     console.log(finance.AM(
-      parseFloat(this.state.purchasePrice.replace(',','')), 
+      parseFloat(this.state.purchasePrice.replace(',','')) - 
+      parseFloat(this.state.downPayment.replace(',','')) +
+      parseFloat(this.state.closingCosts.replace(',','')), 
       parseFloat(this.state.interestRate), 
       360, 
       1) + '');
     this.setState({monthlyPayment: finance.AM(
-      parseFloat(this.state.purchasePrice.replace(',','')), 
+      parseFloat(this.state.purchasePrice.replace(',','')) - 
+      parseFloat(this.state.downPayment.replace(',','')) +
+      parseFloat(this.state.closingCosts.replace(',','')),
       parseFloat(this.state.interestRate), 
       360, 
       1
@@ -56,7 +60,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Future home ROI</Text>
+        <Text style={styles.header}>Home Monthly Payment</Text>
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
           <TextInput 
