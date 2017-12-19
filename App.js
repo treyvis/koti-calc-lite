@@ -15,10 +15,10 @@ const finance = new Finance();
 export default class App extends React.Component {
 
   state={
-    purchasePrice: '',
-    downPayment: '',
-    interestRate: '',
-    closingCosts: '',
+    purchasePrice: '250,000',
+    downPayment: '50,000',
+    interestRate: '3.8',
+    closingCosts: '7,500',
     monthlyPayment: 0
 
   }
@@ -68,6 +68,13 @@ export default class App extends React.Component {
             style={styles.formInput}
             placeholder="Purchase price" 
             value={this.state.purchasePrice}
+            onBlur={() => {
+              if(parseFloat(this.state.purchasePrice.replace(',','')) === 'NaN'){
+                console.log("NaN")
+              } else {
+                console.log('Purchase is a number')
+              }
+            }}
             onChangeText={text => this.setState({purchasePrice: this.cleanNum(text)})}/>
         </View>
         <View style={styles.curencyContainer}>
