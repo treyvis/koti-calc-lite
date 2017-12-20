@@ -19,7 +19,7 @@ export default class App extends React.Component {
     downPayment: '50,000',
     interestRate: '3.8',
     closingCosts: '7,500',
-    monthlyPayment: 0
+    monthlyPayment: '0'
 
   }
 
@@ -39,21 +39,21 @@ export default class App extends React.Component {
 
   calculatePayment = () => {
     console.log('calculatePayment called');
-    console.log(finance.AM(
+    console.log(commaNumber(finance.AM(
       parseFloat(this.state.purchasePrice.replace(',','')) - 
       parseFloat(this.state.downPayment.replace(',','')) +
       parseFloat(this.state.closingCosts.replace(',','')), 
       parseFloat(this.state.interestRate), 
       360, 
-      1) + '');
-    this.setState({monthlyPayment: finance.AM(
+      1) + ''));
+    this.setState({monthlyPayment: commaNumber(finance.AM(
       parseFloat(this.state.purchasePrice.replace(',','')) - 
       parseFloat(this.state.downPayment.replace(',','')) +
       parseFloat(this.state.closingCosts.replace(',','')),
       parseFloat(this.state.interestRate), 
       360, 
       1
-      ) + ''
+      )) + ''
     });
   }
 
