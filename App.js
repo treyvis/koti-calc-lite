@@ -53,7 +53,7 @@ export default class App extends React.Component {
       parseFloat(this.state.interestRate), 
       360, 
       1
-      )) + ''
+      ).toFixed()) + ''
     });
   }
 
