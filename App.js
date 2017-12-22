@@ -19,7 +19,8 @@ export default class App extends React.Component {
     downPayment: '50,000',
     interestRate: '3.8',
     closingCosts: '7,500',
-    monthlyPayment: '0'
+    monthlyPayment: '0',
+    mortgageInsurance: '0'
 
   }
 
@@ -38,15 +39,7 @@ export default class App extends React.Component {
   }
 
   calculatePayment = () => {
-    console.log('calculatePayment called');
-    console.log(commaNumber(finance.AM(
-      parseFloat(this.state.purchasePrice.replace(',','')) - 
-      parseFloat(this.state.downPayment.replace(',','')) +
-      parseFloat(this.state.closingCosts.replace(',','')), 
-      parseFloat(this.state.interestRate), 
-      360, 
-      1) + ''));
-    this.setState({monthlyPayment: commaNumber(finance.AM(
+    let update = {monthlyPayment: commaNumber(finance.AM(
       parseFloat(this.state.purchasePrice.replace(',','')) - 
       parseFloat(this.state.downPayment.replace(',','')) +
       parseFloat(this.state.closingCosts.replace(',','')),
@@ -54,19 +47,34 @@ export default class App extends React.Component {
       360, 
       1
       ).toFixed()) + ''
-    });
+    };
+
+    console.log(parseFloat(this.state.downPayment.replace(',','')));
+    console.log(parseFloat(this.state.purchasePrice.replace(',','')));
+    console.log(parseFloat(this.state.downPayment.replace(',','')) /
+      parseFloat(this.state.purchasePrice.replace(',','')) );
+
+    if (parseFloat(this.state.downPayment.replace(',','')) /
+      parseFloat(this.state.purchasePrice.replace(',','')) 
+      < .2) {
+      console.log('PMI');
+      update = {...update, mortgageInsurance: commaNumber(((parseFloat(this.state.purchasePrice.replace(',','')) - parseFloat(this.state.downPayment.replace(',',''))) / 1200).toFixed()) + ''};
+    }
+
+    this.setState(update);
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Home Monthly Payment</Text>
+        <Text style={styles.formInput}>Purchase Price:</Text>
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
           <TextInput 
             keyboardType={'numeric'}
             style={styles.formInput}
-            placeholder="Purchase price" 
+            placeholder={this.state.purchasePrice}
             value={this.state.purchasePrice}
             onBlur={() => {
               if(parseFloat(this.state.purchasePrice.replace(',','')) === 'NaN'){
@@ -77,6 +85,7 @@ export default class App extends React.Component {
             }}
             onChangeText={text => this.setState({purchasePrice: this.cleanNum(text)})}/>
         </View>
+        <Text style={styles.formInput}>Down Payment:</Text>
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
           <TextInput 
@@ -86,6 +95,7 @@ export default class App extends React.Component {
             value={this.state.downPayment} 
             onChangeText={text => this.setState({downPayment: this.cleanNum(text)})}/>
         </View>
+        <Text style={styles.formInput}>Interest Rate:</Text>
         <View style={styles.curencyContainer}>
           <TextInput 
             keyboardType={'numeric'}
@@ -95,6 +105,7 @@ export default class App extends React.Component {
             onChangeText={text => this.setState({interestRate: this.cleanFloat(text)})}/>
           <Text style={styles.formInput}>%</Text>
         </View>
+        <Text style={styles.formInput}>Closing Costs:</Text>
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
           <TextInput 
@@ -121,15 +132,21 @@ export default class App extends React.Component {
         <View style={{
           alignItems: 'center',
         }}>
-          <Text style={{
-            fontSize: 32
-          }}>
-            Monthly Payment: 
+          <Text style={styles.formInput}>
+            Mortgage Payment: 
           </Text>
-          <Text style={{
-            fontSize: 32
-          }}>
+          <Text style={styles.formInput}>
             {'$' + this.state.monthlyPayment}
+          </Text>
+        </View>
+        <View style={{
+          alignItems: 'center',
+        }}>
+          <Text style={styles.formInput}>
+            Mortgage Insurance: 
+          </Text>
+          <Text style={styles.formInput}>
+            {'$' + this.state.mortgageInsurance}
           </Text>
         </View>
       </View>
