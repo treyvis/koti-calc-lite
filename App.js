@@ -21,7 +21,8 @@ export default class App extends React.Component {
     interestRate: '3.8',
     closingCosts: '7,500',
     monthlyPayment: '0',
-    mortgageInsurance: '0'
+    mortgageInsurance: '0',
+    totalPayment: '0'
 
   }
 
@@ -50,16 +51,13 @@ export default class App extends React.Component {
       ).toFixed()) + ''
     };
 
-    console.log(parseFloat(this.state.downPayment.replace(',','')));
-    console.log(parseFloat(this.state.purchasePrice.replace(',','')));
-    console.log(parseFloat(this.state.downPayment.replace(',','')) /
-      parseFloat(this.state.purchasePrice.replace(',','')) );
-
     if (parseFloat(this.state.downPayment.replace(',','')) /
       parseFloat(this.state.purchasePrice.replace(',','')) 
       < .2) {
       console.log('PMI');
-      update = {...update, mortgageInsurance: commaNumber(((parseFloat(this.state.purchasePrice.replace(',','')) - parseFloat(this.state.downPayment.replace(',',''))) / 1200).toFixed()) + ''};
+      update = {
+        ...update, 
+        mortgageInsurance: commaNumber(((parseFloat(this.state.purchasePrice.replace(',','')) - parseFloat(this.state.downPayment.replace(',',''))) / 1200).toFixed()) + ''};
     }
 
     this.setState(update);
@@ -149,6 +147,16 @@ export default class App extends React.Component {
           </Text>
           <Text style={styles.formInput}>
             {'$' + this.state.mortgageInsurance}
+          </Text>
+        </View>
+        <View style={{
+          alignItems: 'center',
+        }}>
+          <Text style={styles.formInput}>
+            Total Payment: 
+          </Text>
+          <Text style={styles.formInput}>
+            {'$' + this.state.totalPayment}
           </Text>
         </View>
       </View>
