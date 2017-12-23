@@ -4,7 +4,8 @@ import {
   Text,
   View,
   TextInput,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ScrollView
 } from 'react-native';
 
 import stripchar from 'stripchar';
@@ -66,6 +67,7 @@ export default class App extends React.Component {
 
   render() {
     return (
+      <ScrollView>
       <View style={styles.container}>
         <Text style={styles.header}>Home Monthly Payment</Text>
         <Text style={styles.formInput}>Purchase Price:</Text>
@@ -150,6 +152,7 @@ export default class App extends React.Component {
           </Text>
         </View>
       </View>
+      </ScrollView>
     );
   }
 }
