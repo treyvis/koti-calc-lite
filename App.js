@@ -19,6 +19,7 @@ export default class App extends React.Component {
     purchasePrice: '250,000',
     downPayment: '50,000',
     interestRate: '3.8',
+    propertyTaxRate: '1',
     closingCosts: '7,500',
     monthlyPayment: '0',
     mortgageInsurance: '0',
@@ -125,6 +126,16 @@ export default class App extends React.Component {
             placeholder="Closing costs" 
             value={this.state.closingCosts}
             onChangeText={text => this.setState({closingCosts: this.cleanNum(text)})}/>
+        </View>
+        <Text style={styles.formInput}>Property Tax Rate:</Text>
+        <View style={styles.curencyContainer}>
+          <TextInput 
+            keyboardType={'numeric'}
+            style={styles.formInput}
+            placeholder="Interest rate" 
+            value={this.state.propertyTaxRate}
+            onChangeText={text => this.setState({propertyTaxRate: this.cleanFloat(text)})}/>
+          <Text style={styles.formInput}>%</Text>
         </View>
         <Text style={styles.formInput}>
           30-year fixed
