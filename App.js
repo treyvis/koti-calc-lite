@@ -41,26 +41,37 @@ export default class App extends React.Component {
   }
 
   calculatePayment = () => {
-    let update = {monthlyPayment: commaNumber(finance.AM(
+    const monthlyPayment = commaNumber(finance.AM(
       parseFloat(this.state.purchasePrice.replace(',','')) - 
       parseFloat(this.state.downPayment.replace(',','')) +
       parseFloat(this.state.closingCosts.replace(',','')),
       parseFloat(this.state.interestRate), 
       360, 
       1
-      ).toFixed()) + ''
-    };
+      ).toFixed()) + '';
 
-    if (parseFloat(this.state.downPayment.replace(',','')) /
-      parseFloat(this.state.purchasePrice.replace(',','')) 
-      < .2) {
-      console.log('PMI');
-      update = {
-        ...update, 
-        mortgageInsurance: commaNumber(((parseFloat(this.state.purchasePrice.replace(',','')) - parseFloat(this.state.downPayment.replace(',',''))) / 1200).toFixed()) + ''};
-    }
+    const mortgageInsurance = (()=>{
+      if (
+        parseFloat(this.state.downPayment.replace(',','')) /
+        parseFloat(this.state.purchasePrice.replace(',','')) < .2
+      ){
+        return (commaNumber(((parseFloat(this.state.purchasePrice.replace(',','')) - 
+        parseFloat(this.state.downPayment.replace(',',''))) / 1200).toFixed()) + '')
+      } else {
+        return '0'
+      }
+    })();
 
-    this.setState(update);
+    const totalPayment = (
+      parseFloat(monthlyPayment.replace(',','')) +
+      parseFloat(mortgageInsurance.replace(',',''))
+    )
+
+    this.setState({
+      monthlyPayment,
+      mortgageInsurance,
+      totalPayment
+    });
   }
 
   render() {
