@@ -23,7 +23,8 @@ export default class App extends React.Component {
     closingCosts: '7,500',
     monthlyPayment: '0',
     mortgageInsurance: '0',
-    totalPayment: '0'
+    totalPayment: '0',
+    propertyTaxPayment: '0'
 
   }
 
@@ -31,7 +32,7 @@ export default class App extends React.Component {
     return commaNumber(stripchar.StripChar.RSExceptNum(text) || '');
   }
 
-  cleanFloat = text => {
+  cleanFloat = text => { //Fix this this to handle the property tax interest rate
     if (/^\d+\.?\d*?$/.test(text)) {
       this.setState({interestRate: text});
       console.log(true);
@@ -68,10 +69,16 @@ export default class App extends React.Component {
       parseFloat(mortgageInsurance.replace(',',''))
     )
 
+    const propertyTaxPayment = (
+      parseFloat(this.state.purchasePrice.replace(',','')) *
+      parseFloat(this.state.propertyTaxRate.replace(',','')) / 1200
+    ).toFixed() + '';
+
     this.setState({
       monthlyPayment,
       mortgageInsurance,
-      totalPayment
+      totalPayment,
+      propertyTaxPayment
     });
   }
 
@@ -132,7 +139,7 @@ export default class App extends React.Component {
           <TextInput 
             keyboardType={'numeric'}
             style={styles.formInput}
-            placeholder="Interest rate" 
+            placeholder="Property Tax Rate" 
             value={this.state.propertyTaxRate}
             onChangeText={text => this.setState({propertyTaxRate: this.cleanFloat(text)})}/>
           <Text style={styles.formInput}>%</Text>
@@ -169,6 +176,16 @@ export default class App extends React.Component {
           </Text>
           <Text style={styles.formInput}>
             {'$' + this.state.mortgageInsurance}
+          </Text>
+        </View>
+        <View style={{
+          alignItems: 'center',
+        }}>
+          <Text style={styles.formInput}>
+            Property Taxes: 
+          </Text>
+          <Text style={styles.formInput}>
+            {'$' + this.state.propertyTaxPayment}
           </Text>
         </View>
         <View style={{
