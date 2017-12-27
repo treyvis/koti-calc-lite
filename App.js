@@ -64,15 +64,16 @@ export default class App extends React.Component {
       }
     })();
 
-    const totalPayment = (
-      parseFloat(monthlyPayment.replace(',','')) +
-      parseFloat(mortgageInsurance.replace(',',''))
-    )
-
     const propertyTaxPayment = (
       parseFloat(this.state.purchasePrice.replace(',','')) *
       parseFloat(this.state.propertyTaxRate.replace(',','')) / 1200
     ).toFixed() + '';
+
+    const totalPayment = (
+      parseFloat(monthlyPayment.replace(',','')) +
+      parseFloat(mortgageInsurance.replace(',','')) +
+      parseFloat(propertyTaxPayment.replace(',',''))
+    )
 
     this.setState({
       monthlyPayment,
