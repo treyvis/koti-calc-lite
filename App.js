@@ -24,7 +24,8 @@ export default class App extends React.Component {
     monthlyPayment: '0',
     mortgageInsurance: '0',
     totalPayment: '0',
-    propertyTaxPayment: '0'
+    propertyTaxPayment: '0',
+    HOAFee: '0'
 
   }
 
@@ -134,6 +135,16 @@ export default class App extends React.Component {
             placeholder="Closing costs" 
             value={this.state.closingCosts}
             onChangeText={text => this.setState({closingCosts: this.cleanNum(text)})}/>
+        </View>
+        <Text style={styles.formInput}>HOA Fee:</Text>
+        <View style={styles.curencyContainer}>
+          <Text style={styles.formInput}>$</Text>
+          <TextInput 
+            keyboardType={'numeric'}
+            style={styles.formInput}
+            placeholder="HOA Fee" 
+            value={this.state.HOAFee}
+            onChangeText={text => this.setState({HOAFee: this.cleanNum(text)})}/>
         </View>
         <Text style={styles.formInput}>Property Tax Rate:</Text>
         <View style={styles.curencyContainer}>
