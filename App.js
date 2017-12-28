@@ -33,13 +33,11 @@ export default class App extends React.Component {
     return commaNumber(stripchar.StripChar.RSExceptNum(text) || '');
   }
 
-  cleanFloat = text => { //Fix this this to handle the property tax interest rate
+  cleanFloat = (text, key) => { //Fix this this to handle the property tax interest rate
     if (/^\d+\.?\d*?$/.test(text)) {
-      this.setState({interestRate: text});
-      console.log(true);
       return text;
     } else {
-      return this.state.interestRate;
+      return this.state[key];
     }
   }
 
@@ -123,7 +121,7 @@ export default class App extends React.Component {
             style={styles.formInput}
             placeholder="Interest rate" 
             value={this.state.interestRate}
-            onChangeText={text => this.setState({interestRate: this.cleanFloat(text)})}/>
+            onChangeText={text => this.setState({interestRate: this.cleanFloat(text,'interestRate')})}/>
           <Text style={styles.formInput}>%</Text>
         </View>
         <Text style={styles.formInput}>Closing Costs:</Text>
@@ -153,7 +151,7 @@ export default class App extends React.Component {
             style={styles.formInput}
             placeholder="Property Tax Rate" 
             value={this.state.propertyTaxRate}
-            onChangeText={text => this.setState({propertyTaxRate: this.cleanFloat(text)})}/>
+            onChangeText={text => this.setState({propertyTaxRate: this.cleanFloat(text, 'propertyTaxRate')})}/>
           <Text style={styles.formInput}>%</Text>
         </View>
         <Text style={styles.formInput}>
