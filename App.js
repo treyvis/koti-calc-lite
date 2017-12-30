@@ -68,7 +68,7 @@ export default class App extends React.Component {
       parseFloat(this.state.propertyTaxRate.replace(',','')) / 1200
     ).toFixed() + '';
 
-    const totalPayment = (
+    const totalPayment = commaNumber(
       parseFloat(monthlyPayment.replace(',','')) +
       parseFloat(mortgageInsurance.replace(',','')) +
       parseFloat(propertyTaxPayment.replace(',',''))
