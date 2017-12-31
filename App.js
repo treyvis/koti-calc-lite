@@ -30,7 +30,7 @@ export default class App extends React.Component {
   }
 
   cleanNum = text => {
-    return commaNumber(stripchar.StripChar.RSExceptNum(text) || '');
+    return commaNumber(stripchar.StripChar.RSExceptNum(text) || '0');
   }
 
   cleanFloat = (text, key) => { //Fix this this to handle the property tax interest rate
