@@ -71,7 +71,8 @@ export default class App extends React.Component {
     const totalPayment = commaNumber(
       parseFloat(monthlyPayment.replace(',','')) +
       parseFloat(mortgageInsurance.replace(',','')) +
-      parseFloat(propertyTaxPayment.replace(',',''))
+      parseFloat(propertyTaxPayment.replace(',','')) + 
+      parseFloat(this.state.HOAFee.replace(',',''))
     )
 
     this.setState({
