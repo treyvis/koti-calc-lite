@@ -30,6 +30,7 @@ export default class App extends React.Component {
   }
 
   cleanNum = text => {
+    const noLeadingZero = /^([1-9]\d*)?$/;
     return commaNumber(stripchar.StripChar.RSExceptNum(text) || '0');
   }
 
