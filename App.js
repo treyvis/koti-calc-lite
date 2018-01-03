@@ -30,15 +30,16 @@ export default class App extends React.Component {
   }
 
   cleanNum = text => {
-    const noLeadingZero = /^([1-9]\d*)?$/;
-    return commaNumber(stripchar.StripChar.RSExceptNum(text) || '0');
+    return commaNumber(stripchar.StripChar.RSExceptNum(text).replace(/^0+(?!\.|$)/, ''));
   }
 
   cleanFloat = (text, key) => { //Fix this this to handle the property tax interest rate
     if (/^\d+\.?\d*?$/.test(text)) {
-      return text;
+      return text.replace(/^0+(?!\.|$)/, '');
+    } else if (!text) {
+      return '0';
     } else {
-      return this.state[key];
+      return this.state[key]
     }
   }
 
