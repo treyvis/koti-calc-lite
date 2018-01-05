@@ -25,8 +25,8 @@ export default class App extends React.Component {
     mortgageInsurance: '0',
     totalPayment: '0',
     propertyTaxPayment: '0',
-    HOAFee: '0'
-
+    HOAFee: '150',
+    maintenance: '240'
   }
 
   cleanNum = text => {
@@ -74,7 +74,8 @@ export default class App extends React.Component {
       parseFloat(monthlyPayment.replace(',','')) +
       parseFloat(mortgageInsurance.replace(',','')) +
       parseFloat(propertyTaxPayment.replace(',','')) + 
-      parseFloat(this.state.HOAFee.replace(',',''))
+      parseFloat(this.state.HOAFee.replace(',','')) +
+      parseFloat(this.state.maintenance.replace(',',''))
     )
 
     this.setState({
@@ -146,6 +147,16 @@ export default class App extends React.Component {
             placeholder="HOA Fee" 
             value={this.state.HOAFee}
             onChangeText={text => this.setState({HOAFee: this.cleanNum(text)})}/>
+        </View>
+        <Text style={styles.formInput}>Monthly Maintenance:</Text>
+        <View style={styles.curencyContainer}>
+          <Text style={styles.formInput}>$</Text>
+          <TextInput 
+            keyboardType={'numeric'}
+            style={styles.formInput}
+            placeholder="Monthly Maintenance" 
+            value={this.state.maintenance}
+            onChangeText={text => this.setState({maintenance: this.cleanNum(text)})}/>
         </View>
         <Text style={styles.formInput}>Property Tax Rate:</Text>
         <View style={styles.curencyContainer}>
