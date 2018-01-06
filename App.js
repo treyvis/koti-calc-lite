@@ -26,7 +26,8 @@ export default class App extends React.Component {
     totalPayment: '0',
     propertyTaxPayment: '0',
     HOAFee: '150',
-    maintenance: '240'
+    maintenance: '240',
+    houseInsurance: '73'
   }
 
   cleanNum = text => {
@@ -157,6 +158,16 @@ export default class App extends React.Component {
             placeholder="Monthly Maintenance" 
             value={this.state.maintenance}
             onChangeText={text => this.setState({maintenance: this.cleanNum(text)})}/>
+        </View>
+        <Text style={styles.formInput}>Home Owners Insurance:</Text>
+        <View style={styles.curencyContainer}>
+          <Text style={styles.formInput}>$</Text>
+          <TextInput 
+            keyboardType={'numeric'}
+            style={styles.formInput}
+            placeholder="Home Owners Insurance" 
+            value={this.state.houseInsurance}
+            onChangeText={text => this.setState({houseInsurance: this.cleanNum(text)})}/>
         </View>
         <Text style={styles.formInput}>Property Tax Rate:</Text>
         <View style={styles.curencyContainer}>
