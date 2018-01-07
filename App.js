@@ -13,6 +13,8 @@ import commaNumber from 'comma-number';
 import { Finance } from 'financejs'
 const finance = new Finance();
 
+import Input from './components/Input';
+
 export default class App extends React.Component {
 
   state={
