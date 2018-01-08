@@ -94,6 +94,7 @@ export default class App extends React.Component {
       <ScrollView>
       <View style={styles.container}>
         <Text style={styles.header}>Home Monthly Payment</Text>
+        <Text style={styles.formInput}>Basic</Text>
         <Text style={styles.formInput}>Purchase Price:</Text>
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
@@ -141,6 +142,7 @@ export default class App extends React.Component {
             value={this.state.closingCosts}
             onChangeText={text => this.setState({closingCosts: this.cleanNum(text)})}/>
         </View>
+        <Text style={styles.formInput}>Advanced</Text>
         <Text style={styles.formInput}>HOA Fee:</Text>
         <View style={styles.curencyContainer}>
           <Text style={styles.formInput}>$</Text>
@@ -195,6 +197,7 @@ export default class App extends React.Component {
            </Text>
           </View>
         </TouchableWithoutFeedback>
+        <Text style={styles.formInput}>Calculations</Text>
         <View style={{
           alignItems: 'center',
         }}>
